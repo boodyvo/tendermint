@@ -26,9 +26,10 @@ On this 0 initial iteration they also will be fight.
 
 # Usage
 
-
-To build run from the folder project:
+To build run:
 ```bash
+git clone https://github.com/boodyvo/tendermint.git $GOPATH/src/github.com/boodyvo/tendermint
+cd $GOPATH/src/github.com/boodyvo/tendermint
 go mod vendor
 go build .
 ```
@@ -38,9 +39,9 @@ To run after building run:
 ./tendermint -n=1 -input_path=tests/testdata/twocitiesmap.txt
 ```
 
-To run tests:
+Most of tests are located in `world` folder. To test run:
 ```bash
-cd world
+cd $GOPATH/src/github.com/boodyvo/tendermint/world
 go test
 ```
 
@@ -50,3 +51,13 @@ go test
 |------------------|------------------------------------|-----------|
 | _**n**_          | Number of randomly created aliens. | 0         |
 | _**input_path**_ | Path to input file.                | input.txt |
+
+# Docker
+
+You can use docker `boodyvo/tendermint:latest` to test application on your data or to build your own. 
+
+To test with custom file (for example `tests/testdata/twocitiesmap.txt`) you can run: 
+```bash
+docker run --rm -v "$(pwd)"/tests/testdata/twocitiesmap.txt:/input.txt boodyvo/tendermint:latest
+```
+
